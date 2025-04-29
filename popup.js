@@ -91,7 +91,7 @@ async function extractJobInfo(tabId) {
   
     const data = { timestamp, url, title, company, position };
   
-    fetch('', {
+    fetch('YOUR_GOOGLE_SHEET_URL', {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
