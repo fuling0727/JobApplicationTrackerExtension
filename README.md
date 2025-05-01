@@ -18,8 +18,17 @@ Create you Google sheet and open Extension > App Script
 
 
 ### Step 2:
-Copy paste the code from google_sheet.js
+Copy paste the code from google_sheet.js. Click on "Deploy" > "Manage Deploy"
 
-<img width="939" alt="image" src="https://github.com/user-attachments/assets/74341d56-d802-49c9-b861-00f68b9952e9" />
+<img width="1305" alt="image" src="https://github.com/user-attachments/assets/90e68e92-f851-42ec-824c-738c76d6e772" />
+
+
+### Step 3:
+Copy the Web URL, and paste it into your config.json "webAppUrl" field. 
+
+![image](https://github.com/user-attachments/assets/c513b8fa-65e4-4426-92d1-d1cfc482b39c)
+
+
+
 
 
