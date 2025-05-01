@@ -74,7 +74,7 @@ async function extractJobInfo(tabId) {
     if (extracted.company) companyInput.value = extracted.company;
     if (extracted.position) positionInput.value = extracted.position;
   });
-  
+
   document.getElementById('submit').addEventListener('click', async () => {
     const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
     const url = tab.url || '';
@@ -91,12 +91,17 @@ async function extractJobInfo(tabId) {
   
     const data = { timestamp, url, title, company, position };
   
-    fetch('YOUR_GOOGLE_SHEET_URL', {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    })
+    // ✅ Minimal fix: Load config.json, then do POST
+    fetch(chrome.runtime.getURL('config.json'))
+      .then(response => response.json())
+      .then(config => {
+        return fetch(config.webAppUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+      })
       .then(() => {
         document.getElementById('status').textContent = 'Logged successfully!';
         document.getElementById('company').value = '';
@@ -105,5 +110,4 @@ async function extractJobInfo(tabId) {
       .catch(() => {
         document.getElementById('status').textContent = 'Failed to connect.';
       });
-  });
-  
+  });  
